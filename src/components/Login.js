@@ -172,7 +172,7 @@ const Login = () => {
       {/* SignIn/SignUp Button */}
         <button onClick={handleButtonClick}
         className="p-3 sm:p-4 my-4 bg-red-700 w-full rounded-md hover:bg-red-800 active:scale-95 transition-all">
-          {isSignInForm ? "SignIn" : "SignUp"}
+          {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
 
         {/* Error Message Display*/}
