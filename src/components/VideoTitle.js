@@ -1,8 +1,16 @@
 import React from 'react'
 import { Play, Info } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 
-const VideoTitle = ({title,overview}) => {
+const VideoTitle = ({title,overview,movieId}) => {
+  const navigate = useNavigate();
+  const handlePlayClick = () => {
+    if (movieId) {
+      navigate(`/watch/${movieId}`);
+    }
+  }; // navigate to watch page
+
   return (
      
      <div className="absolute inset-0 flex flex-col justify-center items-start px-6 md:px-24 text-white bg-gradient-to-r from-black via-black/60 to-transparent z-10">
@@ -15,11 +23,11 @@ const VideoTitle = ({title,overview}) => {
 
       {/*Div containing two buttons */}
       <div className="flex gap-3 mt-4">
-        <button className="flex items-center gap-2 bg-white/10 text-white font-medium py-2 px-6 rounded-md text-sm hover:bg-white/20 transition duration-200 shadow-sm backdrop-blur-sm">
+        <button onClick={handlePlayClick} className="flex items-center gap-2 bg-white/10 text-white font-medium py-2 px-6 rounded-md text-sm hover:bg-white/20 transition duration-200 shadow-sm backdrop-blur-sm">
             <Play size={16} strokeWidth={1.5} />
             <span>Play</span>
         </button>
-        <button className="hidden md:flex items-center gap-2 bg-white/10 text-white font-medium py-2 px-6 rounded-md text-sm hover:bg-white/20 transition duration-200 shadow-sm backdrop-blur-sm">
+        <button onClick={handlePlayClick} className="hidden md:flex items-center gap-2 bg-white/10 text-white font-medium py-2 px-6 rounded-md text-sm hover:bg-white/20 transition duration-200 shadow-sm backdrop-blur-sm">
             <Info size={16} strokeWidth={1.5} />
             <span>More Info</span>
         </button>

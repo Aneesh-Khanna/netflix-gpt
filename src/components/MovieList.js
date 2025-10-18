@@ -19,7 +19,7 @@ const MovieList = ({ title, movies }) => {
         {/* ✅ Scroll container with custom scrollbar-hide class */}
         <div className="flex overflow-x-auto gap-6 px-4 py-2 scrollbar-hide snap-x snap-mandatory relative z-0">
           {movies?.map((movie) => (
-            <MovieCard key={movie.id} posterPath={movie.poster_path} />
+            <MovieCard key={movie.id} posterPath={movie.poster_path} movieId={movie.id} title={title} overview={movie.overview}/>
           ))}
         </div>
       </div>

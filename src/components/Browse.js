@@ -6,7 +6,7 @@ import useNowPlayingMovies from '../customHooks/useNowPlayingMovies'
 import usePopularMovies from '../customHooks/usePopularMovies';
 import useTopRatedMovies from '../customHooks/useTopRatedMovies';
 import useUpcomingMovies from '../customHooks/useUpcomingMovies';
-import ShimmerBrowse from '../utils/ShimmerUI/ShimmerBrowse';
+import ShimmerBrowse from '../utils/ShimmerUI_Browse/ShimmerBrowse';
 import { useSelector } from 'react-redux';
 
 

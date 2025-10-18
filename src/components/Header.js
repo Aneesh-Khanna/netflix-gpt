@@ -19,9 +19,11 @@ const Header = () => {
   const navigate = useNavigate(); // navigate, redirect between pages
   const user = useSelector((store) => store.user); // subscribe to user slice
   // for displaying user avatar in header , fetch from user slice
-
   const location = useLocation();
-  const isBrowsePage = location.pathname === "/browse";
+  const isBrowsePage = location.pathname === "/browse"; //used for static path
+  const isWatchPage = location.pathname.startsWith("/watch"); // used for dynamic paths (depend on videokey)
+
+
 
 
   
@@ -85,8 +87,11 @@ const Header = () => {
                   photoURL: photoURL,
                 })) ;
 //always redirect to browse page if user is signed in, tries to go to login page, then also redirect to browse page
+// only do if user tries to go to login page, if he goes to watch page then dont redirect
+          if (location.pathname === "/") {
+            navigate("/browse");
+          }
 
-          navigate("/browse");
           } else {
               // User is signed out
               dispatch(removeUser()) ;
@@ -126,6 +131,14 @@ const Header = () => {
 
           {/* more features */}
 
+          { /* button to go back to browse page from watchpage only */}
+          {isWatchPage && (
+          <button
+          onClick={() => navigate('/browse')}
+          className="bg-white/10 text-white px-4 py-2 rounded-md text-sm hover:bg-white/20 transition shadow-sm"
+          >
+          ← Back to Browse
+          </button> )}
 
 
           {/* User Avatar Logo */}

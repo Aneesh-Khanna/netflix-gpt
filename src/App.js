@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import appStore from "./utils/ReduxStore/appStore";
 import Login from "./components/Login";
 import Browse from "./components/Browse";
+import Watch from "./components/Watch";
 
 function App() {
   // Create router at App level
@@ -15,6 +16,10 @@ function App() {
     {
       path: "/browse",
       element: <Browse />,
+    },
+    {
+      path: "/watch/:movieId", 
+      element: <Watch/>,
     },
   ]);
 

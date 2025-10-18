@@ -21,8 +21,9 @@ const MainContainerBrowse = () => {
   return (
     <div className="relative w-screen h-screen overflow-hidden">
       <VideoBackground movieId = {id}/>
-      <VideoTitle title={original_title} overview={overview} /> {/*passing props*/}
-    </div>
+      <VideoTitle title={original_title} overview={overview} movieId = {id}/> {/*passing props*/}
+      {/* passing movieId to videoTitle for watch page*/}
+    </div> 
   )
 }
 
