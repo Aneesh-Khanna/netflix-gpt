@@ -15,4 +15,4 @@ export const TMDB_API_OPTIONS =
 
 export const MOVIE_IMG_URL_PATH = "https://image.tmdb.org/t/p/w500" ;
 
-export const FALLBACK_IMG = 'https://image.tmdb.org/t/p/w185/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg';
+export const FALLBACK_IMG = "https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png";
