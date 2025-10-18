@@ -12,3 +12,5 @@ export const TMDB_API_OPTIONS =
   Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZDg1YzQxZTZiYjBkOWUzZTVlYTA2NzI5OTc5NGY1NyIsIm5iZiI6MTc2MDcyMjIwNS42MzIsInN1YiI6IjY4ZjI3ZDFkNmM1ODY3YjhiZWVjNWJmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.MGr0SVJP-6UhV_CNOBWYjQPA89158l_-z2hozRvehK8'
   }
 };
+
+export const MOVIE_IMG_URL_PATH = "https://image.tmdb.org/t/p/w500" ;

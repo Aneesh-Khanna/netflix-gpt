@@ -40,3 +40,6 @@ On first render it might be null/undefined.
 After your fetch dispatches addNowPlayingMovies, it becomes an array → component re-renders.
   */
 }
+
+
+{/* structure main component consists of videobackground + video title */}
