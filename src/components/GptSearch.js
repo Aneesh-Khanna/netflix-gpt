@@ -12,7 +12,7 @@ const GptSearch = () => {
     <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : 'bg-white text-black'}`}>
       
       {/* Main content area with top padding*/}
-      <div className="pt-12 px-6">
+      <div className="pt-12 px-4 sm:px-6">
         <GptSearchBar />
       </div>
     </div>
