@@ -191,11 +191,13 @@ REACT_APP_FIREBASE_API_KEY=your_firebase_key
 - Rehosted on Firebase
 
 📦 Deployment
-Firebase Hosting
+- Firebase Hosting
+``` bash
 npm run build
 firebase deploy
+```
 
-Keys are embedded during build. No need to set env variables on Firebase Hosting.
+- Keys are embedded during build. No need to set env variables on Firebase Hosting.
 
 ---
 
