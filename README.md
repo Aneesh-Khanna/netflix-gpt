@@ -30,45 +30,45 @@ A responsive, cinematic movie discovery app powered by GPT and TMDB. Built with 
 ## 📸 Screenshots
 
 ### 🔐 Login / Signup Page
-![Sign In](screenshots/login-page-signin.png)
-![Sign Up](screenshots/login-page-signup.png)
+![Sign In](./screenshots/login-page-signin.png)
+![Sign Up](./screenshots/login-page-signup.png)
 
 ### 🎞️ Browse Page
-![Browse 1](screenshots/browse-page-pic1.png)
-![Browse 2](screenshots/browse-page-pic2.png)
-![Browse 3](screenshots/browse-page-pic3.png)
-![Browse Shimmer 1](screenshots/browse-page-pic4-shimmer.png)
-![Browse Shimmer 2](screenshots/browse-page-pic5-shimmer.png)
+![Browse 1](./screenshots/browse-page-pic1.png)
+![Browse 2](./screenshots/browse-page-pic2.png)
+![Browse 3](./screenshots/browse-page-pic3.png)
+![Browse Shimmer 1](./screenshots/browse-page-pic4-shimmer.png)
+![Browse Shimmer 2](./screenshots/browse-page-pic5-shimmer.png)
 
 ### 🔍 GPT Search (Dark Theme)
-![GPT Dark 1](screenshots/gpt-page-darktheme-pic1.png)
-![GPT Dark 2](screenshots/gpt-page-darktheme-pic2-toast-shimmer.png)
-![GPT Dark 3](screenshots/gpt-page-darktheme-pic3.png)
-![GPT Dark 4](screenshots/gpt-page-darktheme-pic4-noresults.png)
+![GPT Dark 1](./screenshots/gpt-page-darktheme-pic1.png)
+![GPT Dark 2](./screenshots/gpt-page-darktheme-pic2-toast-shimmer.png)
+![GPT Dark 3](./screenshots/gpt-page-darktheme-pic3.png)
+![GPT Dark 4](./screenshots/gpt-page-darktheme-pic4-noresults.png)
 
 ### 🔍 GPT Search (Light Theme)
-![GPT Light 1](screenshots/gpt-page-whitetheme-pic1.png)
-![GPT Light 2](screenshots/gpt-page-whitetheme-pic2-toast-shimmer.png)
-![GPT Light 3](screenshots/gpt-page-whitetheme-pic3.png)
-![GPT Light 4](screenshots/gpt-page-whitetheme-pic4-noresults.png)
+![GPT Light 1](./screenshots/gpt-page-whitetheme-pic1.png)
+![GPT Light 2](./screenshots/gpt-page-whitetheme-pic2-toast-shimmer.png)
+![GPT Light 3](./screenshots/gpt-page-whitetheme-pic3.png)
+![GPT Light 4](./screenshots/gpt-page-whitetheme-pic4-noresults.png)
 
 
 ### 📺 Watch Page
-![Watch 1](screenshots/watch-page-pic1.png)
-![Watch 2](screenshots/watch-page-pic2.png)
-![Watch 3](screenshots/watch-page-pic3.png)
-![Watch Shimmer 1](screenshots/watch-page-pic4-shimmer.png)
-![Watch Shimmer 2](screenshots/watch-page-pic5-shimmer.png)
-![Watch Shimmer 3](screenshots/watch-page-pic6-shimmer.png)
+![Watch 1](./screenshots/watch-page-pic1.png)
+![Watch 2](./screenshots/watch-page-pic2.png)
+![Watch 3](./screenshots/watch-page-pic3.png)
+![Watch Shimmer 1](./screenshots/watch-page-pic4-shimmer.png)
+![Watch Shimmer 2](./screenshots/watch-page-pic5-shimmer.png)
+![Watch Shimmer 3](./screenshots/watch-page-pic6-shimmer.png)
 
 ### 📄 Offline + Redux
-![Offline Page](screenshots/custom-offline-page.png)
-![Redux Store 1](screenshots/redux-store-pic1.png)
-![Redux Store 2](screenshots/redux-store-pic2.png)
-![Redux Store 3](screenshots/redux-store-pic3.png)
+![Offline Page](./screenshots/custom-offline-page.png)
+![Redux Store 1](./screenshots/redux-store-pic1.png)
+![Redux Store 2](./screenshots/redux-store-pic2.png)
+![Redux Store 3](./screenshots/redux-store-pic3.png)
 
 ### 🧙 Hover Feature
-![Hover Feature](screenshots/hover-feature.png)
+![Hover Feature](./screenshots/hover-feature.png)
 ---
 
 ## 🧩 Tech Stack
@@ -112,9 +112,14 @@ touch .env
 ```
 
 🔐 .env Configuration
+
+``` bash
+
 REACT_APP_TMDB_API_KEY=your_tmdb_key
 REACT_APP_OPENAI_KEY=your_openai_key
 REACT_APP_FIREBASE_API_KEY=your_firebase_key
+
+```
 
 ---
 
@@ -195,6 +200,8 @@ Keys are embedded during build. No need to set env variables on Firebase Hosting
 ---
 
 📁 Folder Structure
+
+``` bash
 src/
 ├── components/
 │   ├── Browse.js
@@ -258,6 +265,7 @@ src/
 ├── index.js
 ├── index.css
 
+```
 ---
 
 🧙 UX Touches
@@ -283,8 +291,8 @@ src/
 ---
 
 📬 Contact
-Built by Aneesh Khanna
-Feel free to fork, star, or contribute!
+- Built by Aneesh Khanna
+- Feel free to fork, star, or contribute!
 
 ---
 
