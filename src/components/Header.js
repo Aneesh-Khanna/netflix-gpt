@@ -5,12 +5,12 @@ import { addUser, removeUser } from "../utils/ReduxStore/userSlice"
 import { auth } from "../utils/firebase"
 import { useNavigate } from 'react-router-dom';
 import { NETFLIX_LOGO } from '../utils/constants';
-// import { ToggleGpt } from "../utils/ReduxStore/GptSlice";
-// import { SUPPORTED_LANGUAGE } from "../utils/LanguageConstants";
-// import { changeLanguage } from "../utils/ReduxStore/MultiLanguageSlice";
-// import { changeTheme } from "../utils/ReduxStore/ThemeSlice";
-// import { Sun, Moon } from "lucide-react";
+import { clearGptResults, toggleGptSearchView } from '../utils/ReduxStore/gptSlice';
+import { changeLanguage , changeTheme} from "../utils/ReduxStore/configSlice";
+import { Sun, Moon } from "lucide-react";
 import { useLocation } from "react-router-dom"; // for detecting if login page or browse page
+import { SUPPORTED_LANGUAGES } from './../utils/languageConstants';
+
 
 
 
@@ -22,45 +22,29 @@ const Header = () => {
   const location = useLocation();
   const isBrowsePage = location.pathname === "/browse"; //used for static path
   const isWatchPage = location.pathname.startsWith("/watch"); // used for dynamic paths (depend on videokey)
-
-
-
+  const previousPage = sessionStorage.getItem("previousPage");
+   // for previous page functionality
 
   
-  // const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
-  // const handleToggle = ()=>{
-  //     dispatch(ToggleGpt());
-  //   }
-  
-  // const handleGptSearchClick = () => {
-  //   // Toggle GPT Search
-  //   dispatch(toggleGptSearchView());
-  // };
-  // // these handle toggle and handlegptsearch click might be same ! if same then use handle toggle, remove below function
+  const handleGptSearchClick = () => {
+    // Toggle GPT Search
+    dispatch(clearGptResults()); // for clearing cards on gpt page when we come back to it
+    dispatch(toggleGptSearchView());
+  };
 
-  //   const check = useSelector((store)=>{
-  //     return store.GptSearch;
-  //   }) // this may be same as showgpt search above, if so then use this instead of above
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
+  const handleMultiLanguge = (e)=>{
+      dispatch(changeLanguage(e.target.value));
+    }
 
-  //const handleMultiLanguge = (e)=>{
-    //   console.log(e.target.value);
-    //   dispatch(changeLanguage(e.target.value));
-    // }
+  const theme = useSelector((store) => store.config.theme);
 
-    // const checkTheme = useSelector((store)=>{
-    //     return store.theme.theme;
-    //   })
+  const handleThemeToggle = () => {
+  const newTheme = theme === 'dark' ? 'light' : 'dark';
+    dispatch(changeTheme(newTheme));
+  };
 
-    //   const c = checkTheme || "dark";
-
-    // const ToggleTheme = ()=>{
-    //     if(c === "dark"){
-    //       dispatch(changeTheme("light"));
-    //     }else{
-    //       dispatch(changeTheme("dark"));
-    //     }  
-    // }
 
 
   const handleSignOut = () => {
@@ -101,7 +85,7 @@ const Header = () => {
       // Unsubscribe when component unmounts
       return () => unsubscribe();
       },[])
-
+  console.log("Header → previousPage:", previousPage);
   return (
     <div
   className={`absolute top-0 left-0 w-screen z-20 transition-colors duration-500 
@@ -128,17 +112,112 @@ const Header = () => {
         {/* only show right section if user is logged in*/}
         {user && (<div className="flex mt-4 gap-4 md:items-center md:mt-0 flex-nowrap md:flex-wrap">
 
+          {/* Theme Feature for gpt page only  and not on watch page*/}
+          {showGptSearch && !isWatchPage &&  (
+          <button
+          onClick={handleThemeToggle}
+          className="p-2 bg-black text-white border border-white rounded-lg px-2.5 -ml-2 cursor-pointer 
+               font-semibold hover:px-5 hover:bg-white hover:text-black 
+               hover:font-medium hover:text-lg md:px-4 md:-ml-0 transition-all duration-200"
+          >
+          {theme === "light" ? (
+          <Moon size={15} className="text-white border border-white rounded-full p-[2px] bg-black" />
+          ) : (
+          <Sun size={15} className="text-yellow-500" />
+          )}
+          </button>
+          )}
 
-          {/* more features */}
 
-          { /* button to go back to browse page from watchpage only */}
+          {/* Multi Language show for gpt page only*/}
+      {showGptSearch && !isWatchPage && (
+       <div>
+          <select
+          defaultValue=""
+          onChange={handleMultiLanguge}
+          className="bg-white/10 text-white px-4 py-2 rounded-md text-sm 
+             border border-white/20 
+             hover:bg-white/20 hover:shadow-md hover:scale-[1.03] 
+             transition-all duration-200 cursor-pointer"
+            >
+          {/* Default Placeholder */}
+          <option value="" disabled hidden>
+          Language
+          </option>
+
+          {/* Dynamically generated options */}
+          {SUPPORTED_LANGUAGES.map((lan) => (
+          <option key={lan.identifier} value={lan.identifier} className="text-black">
+          {lan.name}
+          </option>
+          ))}
+          </select>
+          </div>
+          )}
+
+          { /* GPT Toggle Button which is dynamic , shows gpt page on browse page and redirects
+          to gpt page and on gpt page , it shows back to browse and redirects to browse*/ }
+          {(isBrowsePage || showGptSearch) && (
+          <button
+          onClick={handleGptSearchClick}
+          className="bg-white/10 text-white px-4 py-2 rounded-md text-sm 
+             border border-white/20 
+             hover:bg-white/20 hover:shadow-md hover:scale-[1.03] 
+             transition-all duration-200"
+          >
+          {showGptSearch ? (
+          <span>← Back to Browse</span>
+          ) : (
+          <>
+          <span className="md:hidden">GPT</span>
+          <span className="hidden md:inline">GPT Search</span>
+          </>
+          )}
+          </button>
+          )}
+
+          { /* button to go back to browse page from watchpage only and to go back to gpt search if we came from there */}
           {isWatchPage && (
+          <>
+          {previousPage === "browse" && (
           <button
           onClick={() => navigate('/browse')}
-          className="bg-white/10 text-white px-4 py-2 rounded-md text-sm hover:bg-white/20 transition shadow-sm"
+          className="bg-white/10 text-white px-4 py-2 rounded-md text-sm 
+             border border-white/20 
+             hover:bg-white/20 hover:shadow-md hover:scale-[1.03] 
+             transition-all duration-200"
           >
           ← Back to Browse
-          </button> )}
+          </button>
+          )}
+
+        {previousPage === "gpt" && (
+        <button
+          onClick={() => {
+          dispatch(toggleGptSearchView());
+          navigate('/browse');
+        }}
+        className="bg-white/10 text-white px-4 py-2 rounded-md text-sm 
+             border border-white/20 
+             hover:bg-white/20 hover:shadow-md hover:scale-[1.03] 
+             transition-all duration-200"
+        >
+        ← Back to GPT Search
+        </button>
+        )}
+        </>
+        )}
+
+          {/*Sign out Button */}
+          <button
+            onClick={handleSignOut}
+            className="bg-white/10 text-white px-4 py-2 rounded-md text-sm 
+             border border-white/20 
+             hover:bg-white/20 hover:shadow-md hover:scale-[1.03] 
+             transition-all duration-200"
+          >
+          Sign Out
+          </button>
 
 
           {/* User Avatar Logo */}
@@ -148,15 +227,6 @@ const Header = () => {
             className="w-8 h-8 md:w-10 md:h-10 rounded-full cursor-pointer border-2 border-gray-300 shadow-md 
             transition-transform transform hover:scale-110 ml-auto md:ml-0w-7 h-7 rounded-md cursor-pointer ml-[25%] mt-2 md:ml-0 md:mt-0 w-10 md:h-10 hidden md:block"
           />
-          
-          {/*Sign out Button */}
-          <button 
-          className="text-white font-medium bg-red-600  hover:bg-red-500 transition-colors rounded-lg 
-          px-4 py-1 md:px-3 md:py-1.5 shadow-lg hover:shadow-xl cursor-pointer ml-3 text-sm md:text-base hover:scale-105 
-          active:scale-95 transition-transform duration-200 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 border border-red-400/40 "
-          onClick = {handleSignOut}>Sign Out
-          </button>
-
           </div>
         )}
         {/*End of right section*/}
@@ -166,6 +236,7 @@ const Header = () => {
 
     {/* end of outer div */}
     </div>
+    
   )
 }
 

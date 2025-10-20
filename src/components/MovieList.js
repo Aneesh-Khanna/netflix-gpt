@@ -1,11 +1,20 @@
 import MovieCard from "./MovieCard";
+import { useSelector } from "react-redux";
 
-const MovieList = ({ title, movies }) => {
 
+const MovieList = ({ title, movies , origin = "browse" }) => {
+  const theme = useSelector((store) => store.config.theme);
   return (
     <div className="px-6">
       {/*Movie List Title*/}
-      <h1 className="text-lg md:text-2xl py-4 text-white"> {title} </h1>
+      <h1
+      className={`text-lg font-semibold mb-2 ${
+      theme === 'dark' ? 'text-white' : 'text-black'
+      }`}
+      >
+      {title}
+      </h1>
+
 
       {/*Movie List Card Container*/}
 
@@ -19,7 +28,7 @@ const MovieList = ({ title, movies }) => {
         {/* ✅ Scroll container with custom scrollbar-hide class */}
         <div className="flex overflow-x-auto gap-6 px-4 py-2 scrollbar-hide snap-x snap-mandatory relative z-0">
           {movies?.map((movie) => (
-            <MovieCard key={movie.id} posterPath={movie.poster_path} movieId={movie.id} title={title} overview={movie.overview}/>
+            <MovieCard key={movie.id} posterPath={movie.poster_path} movieId={movie.id} title={movie.title} overview={movie.overview} origin={origin}/>
           ))}
         </div>
       </div>

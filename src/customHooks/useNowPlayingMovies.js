@@ -12,7 +12,7 @@ const useNowPlayingMovies = ()=>{
 
   const nowPlayingMovies = useSelector((store)=>{
     return store.movies.nowPlayingMovies;
-  })
+  }) // FOR MEMOIZATION , IF DATA NOT IN REDUX STORE THAN ONLY MAKE API CALL
 
   //Async function to make api call
   const getNowPlayingMovies = async()=>{

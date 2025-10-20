@@ -1,12 +1,17 @@
 import React from 'react'
 import { Play, Info } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { setPreviousPage } from "../utils/ReduxStore/configSlice";
+import { toggleGptSearchView } from '../utils/ReduxStore/gptSlice';
 
 const VideoTitle = ({title,overview,movieId}) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handlePlayClick = () => {
     if (movieId) {
+      dispatch(setPreviousPage("browse"));
+      dispatch(toggleGptSearchView(false));
       navigate(`/watch/${movieId}`);
     }
   }; // navigate to watch page
