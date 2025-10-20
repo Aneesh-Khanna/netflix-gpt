@@ -30,7 +30,6 @@ const Login = () => {
 
     //Validate the email and password sent by user.
     const message = checkValidData(email.current.value, password.current.value);
-    console.log(message);
 
     //Set the state variable with corresponding error message
     setErrorMessage(message);

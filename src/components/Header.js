@@ -85,7 +85,6 @@ const Header = () => {
       // Unsubscribe when component unmounts
       return () => unsubscribe();
       },[])
-  console.log("Header → previousPage:", previousPage);
   return (
     <div
   className={`absolute top-0 left-0 w-screen z-20 transition-colors duration-500 
