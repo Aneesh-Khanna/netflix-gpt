@@ -89,7 +89,7 @@ const GptSearchBar = () => {
         `}>
           <Search size={18} strokeWidth={2} className="text-white" />
           <span className="text-sm font-medium tracking-wide">
-          Searching for movie recommendations...
+          {lang[langKey].notification}...
           </span>
         </div>
       </div>

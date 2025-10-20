@@ -1,9 +1,12 @@
 import { useSelector } from "react-redux";
 import MovieList from "./MovieList";
 import NoResults from './NoResults';
+import lang from "../utils/languageConstants";
 
 const GptMovieSuggestions = () => {
   const { movieResults, movieNames } = useSelector((store) => store.gpt);
+  const langKey = useSelector((store) => store.config.language);
+
   if (!movieNames || movieResults.length === 0) return null;
 
   const hasResults = movieResults?.[0]?.length > 0; // to condition render no result or moviesuggestionList
@@ -12,7 +15,7 @@ const GptMovieSuggestions = () => {
       {/* Scrollable Relevant Results Row*/}
       {hasResults ? (
         <MovieList
-          title="Relevant Results"
+          title={lang[langKey].listTitle}
           movies={movieResults[0]}
           origin="gpt"
         />
